@@ -15,6 +15,7 @@
 		A6E07C6D1DA6BC9D0073D296 /* DeveloperConsole.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6E07C6A1DA6BC9D0073D296 /* DeveloperConsole.storyboard */; };
 		A6E07C6E1DA6BC9D0073D296 /* DeveloperConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E07C6B1DA6BC9D0073D296 /* DeveloperConsole.swift */; };
 		A6E07C6F1DA6BC9D0073D296 /* DeveloperConsoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E07C6C1DA6BC9D0073D296 /* DeveloperConsoleManager.swift */; };
+		A6E07C741DA6BD320073D296 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E07C731DA6BD320073D296 /* Log.m */; };
 		EFE1C7E24EC2BD0024E4ADA5 /* Pods_Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78FFD38A113E65D6FEBC2155 /* Pods_Logger.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,9 @@
 		A6E07C6A1DA6BC9D0073D296 /* DeveloperConsole.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DeveloperConsole.storyboard; sourceTree = "<group>"; };
 		A6E07C6B1DA6BC9D0073D296 /* DeveloperConsole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperConsole.swift; sourceTree = "<group>"; };
 		A6E07C6C1DA6BC9D0073D296 /* DeveloperConsoleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperConsoleManager.swift; sourceTree = "<group>"; };
+		A6E07C711DA6BD310073D296 /* Logger-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Logger-Bridging-Header.h"; sourceTree = "<group>"; };
+		A6E07C721DA6BD320073D296 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		A6E07C731DA6BD320073D296 /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
 		DDBC1462677B1FDEDC98012F /* Pods-Logger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Logger.release.xcconfig"; path = "Pods/Target Support Files/Pods-Logger/Pods-Logger.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,9 +93,12 @@
 		A6E07C691DA6BC820073D296 /* DeveloperConsole */ = {
 			isa = PBXGroup;
 			children = (
+				A6E07C721DA6BD320073D296 /* Log.h */,
+				A6E07C731DA6BD320073D296 /* Log.m */,
 				A6E07C6A1DA6BC9D0073D296 /* DeveloperConsole.storyboard */,
 				A6E07C6B1DA6BC9D0073D296 /* DeveloperConsole.swift */,
 				A6E07C6C1DA6BC9D0073D296 /* DeveloperConsoleManager.swift */,
+				A6E07C711DA6BD310073D296 /* Logger-Bridging-Header.h */,
 			);
 			name = DeveloperConsole;
 			sourceTree = "<group>";
@@ -229,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6E07C6F1DA6BC9D0073D296 /* DeveloperConsoleManager.swift in Sources */,
+				A6E07C741DA6BD320073D296 /* Log.m in Sources */,
 				A6E07C6E1DA6BC9D0073D296 /* DeveloperConsole.swift in Sources */,
 				A6065AC51D96D3350098EC0B /* ViewController.swift in Sources */,
 				A6065AC31D96D3350098EC0B /* AppDelegate.swift in Sources */,
@@ -347,10 +355,13 @@
 			baseConfigurationReference = 469B7EAECD2BA344594660F5 /* Pods-Logger.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Logger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sample.test.Logger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Logger/Logger-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -359,10 +370,12 @@
 			baseConfigurationReference = DDBC1462677B1FDEDC98012F /* Pods-Logger.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Logger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sample.test.Logger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Logger/Logger-Bridging-Header.h";
 			};
 			name = Release;
 		};
