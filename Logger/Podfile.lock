@@ -1,0 +1,21 @@
+PODS:
+  - WBWebViewConsole (1.0.2)
+
+DEPENDENCIES:
+  - WBWebViewConsole (from `https://github.com/Naituw/WBWebViewConsole.git`)
+
+EXTERNAL SOURCES:
+  WBWebViewConsole:
+    :git: https://github.com/Naituw/WBWebViewConsole.git
+
+CHECKOUT OPTIONS:
+  WBWebViewConsole:
+    :commit: 2f3351f73ba137c4cacffe527b6f116b7c017093
+    :git: https://github.com/Naituw/WBWebViewConsole.git
+
+SPEC CHECKSUMS:
+  WBWebViewConsole: 1288737d136b44a281cc654828339127f959e21c
+
+PODFILE CHECKSUM: 87441207bbad81a909090f015d9d3e5a2b72a6c3
+
+COCOAPODS: 1.0.1
