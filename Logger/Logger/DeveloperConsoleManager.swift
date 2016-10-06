@@ -66,7 +66,7 @@ class DeveloperConsoleManager :NSObject
         let logg = log.trim()
         let  acceptedLoglevel = NSUserDefaults.standardUserDefaults().valueForKey("AcceptedLoglevel") as? Loglevel.RawValue
         if acceptedLoglevel != Loglevel.NONE.rawValue {
-                var loggerString:String=DeviceManager.sharedInstance.getCurrentDateTimeStamp()
+                var loggerString:String=getCurrentDateTimeStamp()
             loggerString=loggerString+" : "+logg+" \n"
                 writeOnConsoleLog(loggerString,isContainee: false)
             }

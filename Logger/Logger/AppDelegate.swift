@@ -8,6 +8,49 @@
 
 import UIKit
 
+//Adding global constants and global methods
+
+let containeeLogFileName = "JSLogs.txt"
+let containeeOldLogFileName = "OldJSLogs.txt"
+let containerLogFileName = "nativeLogs.txt"
+let containerOldLogFileName = "OldnativeLogs.txt"
+let crashLogFileName="CrashLog.txt"
+
+public func writeLog(logs:AnyObject!...) {
+    assert(logs.count>1,"Here is the sample syntax for writing log: writeLog(Loglevel.DEBUG.rawValue,obj)")
+    let  acceptedLoglevel = NSUserDefaults.standardUserDefaults().valueForKey("AcceptedLoglevel") as? Loglevel.RawValue
+    if acceptedLoglevel != Loglevel.NONE.rawValue {
+        let currentLogLevel = logs[0] as! Loglevel.RawValue
+        assert(currentLogLevel >= Loglevel.VEERBOSE.rawValue && currentLogLevel <= Loglevel.ERROR.rawValue,"Here is the sample syntax for writing log: writeLog(Loglevel.DEBUG.rawValue,obj)")
+        var loggerString:String=getCurrentDateTimeStamp()
+        for i:Int in 1 ..< logs.count {
+            if let logg = logs[i] as AnyObject! {
+                loggerString=loggerString+" : "+logg.description+" \n"
+            }
+        }
+        if acceptedLoglevel  <= currentLogLevel {
+            DeveloperConsoleManager.sharedInstance.writeOnConsoleLog(loggerString,isContainee: false)
+        }
+    }
+}
+
+func getCurrentDateTimeStamp() -> String {
+    let todaysDate:NSDate = NSDate()
+    let dateFormatter:NSDateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+    return dateFormatter.stringFromDate(todaysDate)
+}
+
+public enum Loglevel:Int {
+    case NONE = 0
+    case VEERBOSE = 2
+    case DEBUG = 3
+    case INFO = 4
+    case WARN = 5
+    case ERROR = 6
+}
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
