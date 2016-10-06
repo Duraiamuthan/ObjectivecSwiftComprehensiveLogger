@@ -1,7 +1,9 @@
 PODS:
+  - PLCrashReporter (1.2.0)
   - WBWebViewConsole (1.0.2)
 
 DEPENDENCIES:
+  - PLCrashReporter
   - WBWebViewConsole (from `https://github.com/Naituw/WBWebViewConsole.git`)
 
 EXTERNAL SOURCES:
@@ -14,8 +16,9 @@ CHECKOUT OPTIONS:
     :git: https://github.com/Naituw/WBWebViewConsole.git
 
 SPEC CHECKSUMS:
+  PLCrashReporter: 16927d86a093d0b9cf110545dacb77cb0ed0f243
   WBWebViewConsole: 1288737d136b44a281cc654828339127f959e21c
 
-PODFILE CHECKSUM: 87441207bbad81a909090f015d9d3e5a2b72a6c3
+PODFILE CHECKSUM: 8018924be2ec31b5e06b534e8d6a1c2d93170b0a
 
 COCOAPODS: 1.0.1

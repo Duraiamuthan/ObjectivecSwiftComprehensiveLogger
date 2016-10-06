@@ -1,4 +1,5 @@
 target 'Logger' do
   use_frameworks!
   pod 'WBWebViewConsole', :git => 'https://github.com/Naituw/WBWebViewConsole.git'
+  pod 'PLCrashReporter'
 end
