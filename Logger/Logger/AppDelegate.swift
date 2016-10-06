@@ -16,6 +16,15 @@ let containerLogFileName = "nativeLogs.txt"
 let containerOldLogFileName = "OldnativeLogs.txt"
 let crashLogFileName="CrashLog.txt"
 
+public enum Loglevel:Int {
+    case NONE = 0
+    case VEERBOSE = 2
+    case DEBUG = 3
+    case INFO = 4
+    case WARN = 5
+    case ERROR = 6
+}
+
 public func writeLog(logs:AnyObject!...) {
     assert(logs.count>1,"Here is the sample syntax for writing log: writeLog(Loglevel.DEBUG.rawValue,obj)")
     let  acceptedLoglevel = NSUserDefaults.standardUserDefaults().valueForKey("AcceptedLoglevel") as? Loglevel.RawValue
@@ -41,13 +50,8 @@ func getCurrentDateTimeStamp() -> String {
     return dateFormatter.stringFromDate(todaysDate)
 }
 
-public enum Loglevel:Int {
-    case NONE = 0
-    case VEERBOSE = 2
-    case DEBUG = 3
-    case INFO = 4
-    case WARN = 5
-    case ERROR = 6
+func setLogLevel(type:Loglevel){
+    NSUserDefaults.standardUserDefaults().setValue(type.rawValue, forKey: "AcceptedLoglevel")
 }
 
 
@@ -59,6 +63,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        setLogLevel(Loglevel.VEERBOSE)
+        
         let crashReporter: PLCrashReporter = PLCrashReporter.sharedReporter()
         if crashReporter.hasPendingCrashReport() {
             self.handleCrashReport()
@@ -111,6 +118,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return
     }
-
 }
 
