@@ -5,3 +5,5 @@
 #import <CrashReporter/CrashReporter.h>
 #import <CrashReporter/PLCrashReport.h>
 #import "WBWKWebView.h"
+#import "Reachability.h"
+#import "NetworkManager.h"

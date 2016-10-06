@@ -2,8 +2,8 @@
 //  Log.m
 //  OmniclientSwift
 //
-//  Created by Durai on 04/02/16.
-//  Copyright © 2016 Ericsson Research. All rights reserved.
+//  Created by Durai on 24/09/16.
+//  Copyright © 2016 Durai Amuthan.H. All rights reserved.
 //
 
 #import "Log.h"
