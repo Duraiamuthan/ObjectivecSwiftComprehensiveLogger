@@ -17,6 +17,7 @@
 		A6E07C6F1DA6BC9D0073D296 /* DeveloperConsoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E07C6C1DA6BC9D0073D296 /* DeveloperConsoleManager.swift */; };
 		A6E07C741DA6BD320073D296 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E07C731DA6BD320073D296 /* Log.m */; };
 		A6E07C771DA6C1420073D296 /* WBWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E07C761DA6C1420073D296 /* WBWKWebView.m */; };
+		A6E07C7A1DA6C3000073D296 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E07C791DA6C3000073D296 /* Reachability.m */; };
 		EFE1C7E24EC2BD0024E4ADA5 /* Pods_Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78FFD38A113E65D6FEBC2155 /* Pods_Logger.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,8 @@
 		A6E07C731DA6BD320073D296 /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
 		A6E07C751DA6C1420073D296 /* WBWKWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBWKWebView.h; sourceTree = "<group>"; };
 		A6E07C761DA6C1420073D296 /* WBWKWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBWKWebView.m; sourceTree = "<group>"; };
+		A6E07C781DA6C3000073D296 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		A6E07C791DA6C3000073D296 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		DDBC1462677B1FDEDC98012F /* Pods-Logger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Logger.release.xcconfig"; path = "Pods/Target Support Files/Pods-Logger/Pods-Logger.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +99,8 @@
 		A6E07C691DA6BC820073D296 /* DeveloperConsole */ = {
 			isa = PBXGroup;
 			children = (
+				A6E07C781DA6C3000073D296 /* Reachability.h */,
+				A6E07C791DA6C3000073D296 /* Reachability.m */,
 				A6E07C751DA6C1420073D296 /* WBWKWebView.h */,
 				A6E07C761DA6C1420073D296 /* WBWKWebView.m */,
 				A6E07C721DA6BD320073D296 /* Log.h */,
@@ -243,6 +248,7 @@
 				A6E07C771DA6C1420073D296 /* WBWKWebView.m in Sources */,
 				A6E07C6F1DA6BC9D0073D296 /* DeveloperConsoleManager.swift in Sources */,
 				A6E07C741DA6BD320073D296 /* Log.m in Sources */,
+				A6E07C7A1DA6C3000073D296 /* Reachability.m in Sources */,
 				A6E07C6E1DA6BC9D0073D296 /* DeveloperConsole.swift in Sources */,
 				A6065AC51D96D3350098EC0B /* ViewController.swift in Sources */,
 				A6065AC31D96D3350098EC0B /* AppDelegate.swift in Sources */,
