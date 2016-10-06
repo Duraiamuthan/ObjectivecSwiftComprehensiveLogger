@@ -59,6 +59,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        let crashReporter: PLCrashReporter = PLCrashReporter.sharedReporter()
+        if crashReporter.hasPendingCrashReport() {
+            self.handleCrashReport()
+        }
+        
+        do{
+            try crashReporter.enableCrashReporterAndReturnError()
+        }
+        catch{
+            writeLog(Loglevel.DEBUG.rawValue,"Could not enable crash reporter")
+        }
         return true
     }
 
@@ -84,6 +95,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func handleCrashReport() {
+        let crashReporter: PLCrashReporter = PLCrashReporter.sharedReporter()
+        let crashData: NSData!
+        do {
+            let crashData = try crashReporter.loadPendingCrashReportDataAndReturnError()
+            let report = try PLCrashReport(data: crashData)
+            let crashDump = PLCrashReportTextFormatter.stringValueForCrashReport(report, withTextFormat: PLCrashReportTextFormatiOS)
+            
+            DeveloperConsoleManager.sharedInstance.addCrashLog(crashDump)
+            
+            crashReporter.purgePendingCrashReport()
+        }catch{
+            writeLog(Loglevel.ERROR.rawValue,"Could not load crash report")
+        }
+        return
+    }
 
 }
 
