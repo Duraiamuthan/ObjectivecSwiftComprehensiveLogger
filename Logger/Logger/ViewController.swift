@@ -66,6 +66,26 @@ class ViewController: UIViewController {
                     }
                 }
     }
+    
+    //To see native logs(Objective C(Nslog) and swift(writelog))
+    func launchContainerDeveloperConsole(recognizer: UIPanGestureRecognizer){
+        if recognizer.state == UIGestureRecognizerState.Ended{
+            let storyboard = UIStoryboard(name: "DeveloperConsole", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("DeveloperConsole") as! DeveloperConsole
+            vc.isContainee=false
+            self.navigationController!.pushViewController(vc, animated: true)
+        }
+    }
+    
+    //To see javascript logs
+    func launchContaineeDeveloperConsole(recognizer: UIPinchGestureRecognizer){
+        if recognizer.state == UIGestureRecognizerState.Ended{
+            let storyboard = UIStoryboard(name: "DeveloperConsole", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("DeveloperConsole") as! DeveloperConsole
+            vc.isContainee=true
+            self.navigationController!.pushViewController(vc, animated: true)
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
