@@ -15,6 +15,7 @@ let containeeOldLogFileName = "OldJSLogs.txt"
 let containerLogFileName = "nativeLogs.txt"
 let containerOldLogFileName = "OldnativeLogs.txt"
 let crashLogFileName="CrashLog.txt"
+let SEPARATOR = "*^'`@#$`'^*"
 
 public enum Loglevel:Int {
     case NONE = 0

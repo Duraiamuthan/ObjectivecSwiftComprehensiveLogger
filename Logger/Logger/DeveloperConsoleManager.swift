@@ -15,7 +15,7 @@
 import Foundation
 import MessageUI
 
-class DeveloperConsoleManager :NSObject
+class DeveloperConsoleManager :NSObject,MFMailComposeViewControllerDelegate
 {
     let documentsPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).first!
     
@@ -142,6 +142,67 @@ class DeveloperConsoleManager :NSObject
             outputStream.write(crashLog, maxLength: crashLog.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
             outputStream.close()
         }
+    }
+    
+    func sendMailWithLog() -> Bool {
+        // first check whether device can send mail
+        if MFMailComposeViewController.canSendMail(){
+            let mailComposer: MFMailComposeViewController = MFMailComposeViewController()
+            mailComposer.setMessageBody("Please find the attached log", isHTML: false)
+            mailComposer.setSubject("OmniMobile Logs")
+            
+            // Attach the container log file
+            if let consoleData=getAttachmentData(containerLogFileName) {
+                var convertedStr = NSString(data: consoleData, encoding: NSUTF8StringEncoding)
+                convertedStr=convertedStr?.stringByReplacingOccurrencesOfString(SEPARATOR, withString: "")
+                
+                mailComposer.addAttachmentData((DeveloperConsoleManager.sharedInstance.getConsoleLog(false,isOldFileRequired: true)?.dataUsingEncoding(NSUTF8StringEncoding))!, mimeType: "text/plain", fileName: containerLogFileName)
+            }
+            
+            //Attach the containee log file
+            if let consoleData=getAttachmentData(containeeLogFileName) {
+                var convertedStr = NSString(data: consoleData, encoding: NSUTF8StringEncoding)
+                convertedStr=convertedStr?.stringByReplacingOccurrencesOfString(SEPARATOR, withString: "")
+                
+                mailComposer.addAttachmentData((DeveloperConsoleManager.sharedInstance.getConsoleLog(true,isOldFileRequired: true)?.dataUsingEncoding(NSUTF8StringEncoding))!, mimeType: "text/plain", fileName: containeeLogFileName)
+            }
+            
+            if let crashData=getAttachmentData(crashLogFileName) {
+                mailComposer.addAttachmentData(crashData, mimeType: "text/plain", fileName: crashLogFileName)
+            }
+            
+            mailComposer.mailComposeDelegate = self
+            
+            // present the mail composer view
+            let navigationController = UIApplication.sharedApplication().keyWindow?.rootViewController as! UINavigationController
+            dispatch_sync(dispatch_get_main_queue()) {
+                navigationController.viewControllers.last?.presentViewController(mailComposer, animated: true, completion: nil)
+            }
+            return true
+        }
+        return false
+    }
+    
+    func getAttachmentData(let fileName:String) -> NSData! {
+        let documentsPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).first!
+        let filePath=documentsPath+"/"+fileName
+        
+        let data: NSData!
+        
+        if  NSFileManager.defaultManager().fileExistsAtPath(filePath){
+            data = NSFileManager.defaultManager().contentsAtPath(filePath)!
+            return data
+        }
+        
+        return nil
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        //        if result == MFMailComposeResultSent {
+        //           //Mail has been sent
+        //        }
+        let navigationController = UIApplication.sharedApplication().keyWindow?.rootViewController as! UINavigationController
+        navigationController.dismissViewControllerAnimated(true,completion: nil)
     }
   }
 

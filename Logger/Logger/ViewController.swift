@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         webView = WBWKWebView(frame: self.view.bounds)
         webView.JSBridge.interfaceName="WKWebViewBridge"
         webView.JSBridge.readyEventName="WKWebViewBridgeReady"
