@@ -25,6 +25,19 @@ class ViewController: UIViewController {
         view = webView
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.consoleDidAddMessage(_:)), name: WBWebViewConsoleDidAddMessageNotification, object: nil)
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let gestureRecognizerForContaineeLog = UITapGestureRecognizer(target: self, action: #selector(ViewController.launchContaineeDeveloperConsole(_:)))
+        gestureRecognizerForContaineeLog.numberOfTapsRequired=3
+        
+        let gestureRecognizerForContainerLog = UITapGestureRecognizer(target: self, action: #selector(ViewController.launchContainerDeveloperConsole(_:)))
+        gestureRecognizerForContainerLog.numberOfTapsRequired=4
+        
+        let gestureRecognizerForSendingLogs = UITapGestureRecognizer(target: self, action: #selector(ViewController.sendLogs(_:)))
+        gestureRecognizerForSendingLogs.numberOfTapsRequired=5
+        
+        webView.addGestureRecognizer(gestureRecognizerForContaineeLog)
+        webView.addGestureRecognizer(gestureRecognizerForContainerLog)
+        webView.addGestureRecognizer(gestureRecognizerForSendingLogs)
     }
     
     func getUrlRequestForLan() -> NSURLRequest{
@@ -68,7 +81,7 @@ class ViewController: UIViewController {
     }
     
     //To see native logs(Objective C(Nslog) and swift(writelog))
-    func launchContainerDeveloperConsole(recognizer: UIPanGestureRecognizer){
+    func launchContainerDeveloperConsole(recognizer: UITapGestureRecognizer){
         if recognizer.state == UIGestureRecognizerState.Ended{
             let storyboard = UIStoryboard(name: "DeveloperConsole", bundle: nil)
             let vc = storyboard.instantiateViewControllerWithIdentifier("DeveloperConsole") as! DeveloperConsole
@@ -78,12 +91,18 @@ class ViewController: UIViewController {
     }
     
     //To see javascript logs
-    func launchContaineeDeveloperConsole(recognizer: UIPinchGestureRecognizer){
+    func launchContaineeDeveloperConsole(recognizer: UITapGestureRecognizer){
         if recognizer.state == UIGestureRecognizerState.Ended{
             let storyboard = UIStoryboard(name: "DeveloperConsole", bundle: nil)
             let vc = storyboard.instantiateViewControllerWithIdentifier("DeveloperConsole") as! DeveloperConsole
             vc.isContainee=true
             self.navigationController!.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func sendLogs(recognizer: UITapGestureRecognizer){
+        if recognizer.state == UIGestureRecognizerState.Ended{
+           DeveloperConsoleManager.sharedInstance.sendMailWithLog()
         }
     }
 
